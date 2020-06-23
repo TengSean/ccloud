@@ -34,20 +34,14 @@ class input_json(BaseModel):
 def read_root():
     return {"Hello": "World"}
 
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
-
 
 @app.post("/items/")
 async def run(item: input_json):
     paragraph = item.content[0].sentence.origin
     pipline = item.pipline.dict()
-#     print(paragraph)
-#     print(pipline)
-#     os.system("PYTHONPATH='.' luigi --module start Entry --input-path testing.json --input-paragraph {} 20200620.json --local-scheduler".format(paragraph))
+    
     os.system("PYTHONPATH='.' luigi --module start Entry --input-path testing.json --input-pipline {} --input-paragraph {} --local-scheduler".format('\''+json.dumps(pipline)+'\'', '\''+paragraph+'\''))
-#     print(item.dict()['content'])
     with open('./data/output/testing.json', 'r') as f:
         return_json = json.load(f)
+        
     return return_json

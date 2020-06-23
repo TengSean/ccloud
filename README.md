@@ -1,7 +1,3 @@
-# CCloud final
-cmd: PYTHONPATH='.' luigi --module start Entry --input-path 20200620.json --local-scheduler
-
-
 
 ## fastapi download:
     pip install fastapi
@@ -10,3 +6,4 @@ cmd: PYTHONPATH='.' luigi --module start Entry --input-path 20200620.json --loca
 
 ## Run fastapi server:
     cmd: uvicorn --host 0.0.0.0 {your_script_name}:app
+    Then run the cell which in demo.ipynb
